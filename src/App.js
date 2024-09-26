@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline'; // Correct import
+import CssBaseline from '@mui/material/CssBaseline';
 import AppBarComponent from './components/AppBar';
 import Sidebar from './components/Sidebar';
 import MovieGrid from './components/MovieGrid';
@@ -9,6 +9,7 @@ import MovieDetails from './components/MovieDetails';
 import ActorDetails from './components/ActorDetails';
 import Favorites from './components/Favorites';
 import Upcoming from './components/Upcoming';
+import LoginPage from './components/LoginPage';  // Import the LoginPage component
 import { fetchMoviesBySearch } from './services/tmdbApi';
 
 const App = () => {
@@ -17,13 +18,14 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState('Home');
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);  // Track authentication state
 
   // Handle menu toggle
   const handleMenuClick = () => {
     setSidebarOpen((prevState) => !prevState);
   };
 
-  // Handle genre selection from the sidebar
+  // Handle genre selection
   const handleGenreSelect = (genreId) => {
     setSelectedGenreId(genreId);
     setSearchResults([]);
@@ -31,7 +33,7 @@ const App = () => {
     setSidebarOpen(false);
   };
 
-  // Handle category selection from the sidebar
+  // Handle category selection
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setSelectedGenreId(null);
@@ -39,9 +41,9 @@ const App = () => {
     setSidebarOpen(false);
   };
 
-  // Handle search input from the AppBar
+  // Handle search input from AppBar
   const handleSearchClick = async (searchTerm) => {
-    if (searchTerm.trim() === "") return;
+    if (searchTerm.trim() === '') return;
     setIsLoading(true);
     try {
       const results = await fetchMoviesBySearch(searchTerm);
@@ -49,11 +51,17 @@ const App = () => {
       setSelectedGenreId(null);
       setSelectedCategory('');
     } catch (error) {
-      console.error("Error fetching search results:", error);
+      console.error('Error fetching search results:', error);
     } finally {
       setIsLoading(false);
       setSidebarOpen(false);
     }
+  };
+
+  // Handle login submission (dummy authentication)
+  const handleLoginSubmit = (loginData) => {
+    console.log('Login successful:', loginData);
+    setIsAuthenticated(true);  // Set authenticated state to true after login
   };
 
   // Create a light theme instance
@@ -61,25 +69,25 @@ const App = () => {
     palette: {
       mode: 'light',
       background: {
-        default: '#fff',     // Background color for light mode
-        paper: '#f5f5f5',    // Paper or card background color
+        default: '#fff',
+        paper: '#f5f5f5',
       },
       text: {
-        primary: '#000',    // Text color for light mode
+        primary: '#000',
       },
     },
     components: {
       MuiAppBar: {
         styleOverrides: {
           root: {
-            backgroundColor: '#1976d2', // Light AppBar color
+            backgroundColor: '#1976d2',
           },
         },
       },
       MuiButton: {
         styleOverrides: {
           root: {
-            color: '#000',  // Button text color in light mode
+            color: '#000',
           },
         },
       },
@@ -88,51 +96,55 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Ensure global styles (background, text color) are applied */}
+      <CssBaseline />
       <Router>
         <div>
-          {/* App Bar Component */}
-          <AppBarComponent
-            onMenuClick={handleMenuClick}
-            onSearchClick={handleSearchClick}
-          />
+          {/* Conditionally render the LoginPage or the main app based on authentication */}
+          {!isAuthenticated ? (
+            <LoginPage onLoginSubmit={handleLoginSubmit} />  
+          ) : (
+            <>
+              {/* App Bar Component */}
+              <AppBarComponent onMenuClick={handleMenuClick} onSearchClick={handleSearchClick} />
 
-          {/* Sidebar Component */}
-          <Sidebar
-            open={sidebarOpen}
-            onClose={() => setSidebarOpen(false)}
-            onSelectGenre={handleGenreSelect}
-            onSelectCategory={handleCategorySelect}
-          />
-
-          <div style={{ marginTop: '64px' }}>
-            <Routes>
-              {/* Default Home Route */}
-              <Route
-                path="/"
-                element={
-                  <>
-                    {selectedCategory === 'Favorites' && <Favorites />}
-                    {selectedCategory === 'Upcoming' && <Upcoming />}
-                    {selectedCategory === 'Home' || selectedCategory === '' ? (
-                      <MovieGrid
-                        selectedGenre={selectedGenreId}
-                        searchResults={searchResults}
-                        isLoading={isLoading} // Pass loading state
-                      />
-                    ) : null}
-                  </>
-                }
+              {/* Sidebar Component */}
+              <Sidebar
+                open={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
+                onSelectGenre={handleGenreSelect}
+                onSelectCategory={handleCategorySelect}
               />
-              {/* Movie Details Route */}
-              <Route path="/movie/:movieId" element={<MovieDetails />} />
-              {/* Actor Details Route */}
-              <Route path="/actors/:actorId" element={<ActorDetails />} />
-            </Routes>
-          </div>
 
-          {/* Loader when fetching search results */}
-          {isLoading && <div>Loading...</div>}
+              <div style={{ marginTop: '64px' }}>
+                <Routes>
+                  {/* Default Home Route */}
+                  <Route
+                    path="/"
+                    element={
+                      <>
+                        {selectedCategory === 'Favorites' && <Favorites />}
+                        {selectedCategory === 'Upcoming' && <Upcoming />}
+                        {selectedCategory === 'Home' || selectedCategory === '' ? (
+                          <MovieGrid
+                            selectedGenre={selectedGenreId}
+                            searchResults={searchResults}
+                            isLoading={isLoading}
+                          />
+                        ) : null}
+                      </>
+                    }
+                  />
+                  {/* Movie Details Route */}
+                  <Route path="/movie/:movieId" element={<MovieDetails />} />
+                  {/* Actor Details Route */}
+                  <Route path="/actors/:actorId" element={<ActorDetails />} />
+                </Routes>
+              </div>
+
+              {/* Loader when fetching search results */}
+              {isLoading && <div>Loading...</div>}
+            </>
+          )}
         </div>
       </Router>
     </ThemeProvider>
