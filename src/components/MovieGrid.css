@@ -1,0 +1,131 @@
+/* General layout for the grid */
+.movie-grid {
+  background-color: #f0f0f0;  /* Light grey background for better contrast */
+  min-height: 100vh;
+  padding: 30px;
+  position: relative;
+}
+
+/* Loading spinner container */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Featured Movie Section */
+.latest-movie {
+  position: relative;
+  height: 60vh;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  background: linear-gradient(135deg, #ff6b6b, #ff9f1c);  /* Gradient background for featured movie */
+  overflow: hidden;
+  border-radius: 16px; /* Add rounded corners for a modern look */
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);  /* Softer shadow for depth */
+}
+
+.latest-movie-backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4) blur(5px);  /* Slight blur and darkening for backdrop */
+  z-index: 1;
+}
+
+.latest-movie-info {
+  position: relative;
+  z-index: 2;
+  max-width: 60%;  /* Adjust width of the text container */
+  padding-left: 40px;  /* More padding for a balanced look */
+}
+
+.latest-movie-title {
+  font-size: 3rem; /* Larger title for featured movie */
+  font-weight: 700;
+  margin-bottom: 15px;  /* Increased spacing */
+}
+
+.latest-movie-description {
+  font-size: 1.1rem; /* Increased font size for readability */
+  line-height: 1.6;
+  opacity: 0.9;  /* Slight transparency for description text */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+  .latest-movie-title {
+    font-size: 2rem; /* Adjust title size for mobile */
+  }
+
+  .latest-movie-description {
+    font-size: 1rem; /* Adjust description size for mobile */
+  }
+
+  .latest-movie-info {
+    padding-left: 15px; /* Adjust padding for mobile */
+    max-width: 80%; /* Wider text area on mobile */
+  }
+}
+
+/* Movie Card Grid */
+.movie-card-grid {
+  z-index: 2;
+  margin-top: 50px;
+}
+
+.movie-card-grid .MuiGrid-item {
+  transition: transform 0.3s ease;
+  margin-bottom: 40px; /* Space between cards */
+}
+
+/* Movie Card */
+.movie-card {
+  background-color: #ffffff;  /* Pure white for a clean look */
+  color: #333;  /* Darker text for contrast */
+  padding: 15px;
+  border-radius: 12px;  /* Softer, more rounded corners */
+  cursor: pointer;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);  /* Gentle shadow effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+/* Movie poster image */
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  max-height: 320px;  /* Slightly taller poster height */
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.movie-card:hover {
+  transform: translateY(-5px);  /* Lifts the card slightly on hover */
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
+}
+
+.movie-card img:hover {
+  transform: scale(1.05);  /* Slight zoom-in effect on hover */
+}
+
+/* Responsive adjustments for movie cards */
+@media (max-width: 600px) {
+  .movie-card {
+    padding: 12px;  /* Adjusted padding for mobile */
+  }
+
+  .movie-card-grid .MuiGrid-item {
+    margin-bottom: 25px;  /* Space between cards */
+  }
+
+  .movie-card img {
+    max-height: 220px;  /* Smaller posters on mobile */
+  }
+}
