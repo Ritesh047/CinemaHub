@@ -123,3 +123,8 @@
 .loginPage__signup a:hover {
   text-decoration: underline;
 }
+
+.cinemaHub {
+  font-weight: bold;
+  color: white; /* Change the text color to white */
+}

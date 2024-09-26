@@ -51,7 +51,7 @@ const LoginPage = ({ onLoginSubmit }) => {
                 </button>
               </div>
               <div className="loginPage__signup">
-                <p>New to CinemaHub? 
+                <p>New to <strong className="cinemaHub">CinemaHub</strong>? 
                   <button className="loginPage__signupButton" onClick={() => console.log('Sign up clicked')}>
                     Sign up now.
                   </button>
