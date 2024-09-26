@@ -1,0 +1,99 @@
+.loginPage {
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-image: url('../assets/background.jpg');/* Replace with background image URL */
+    background-position: center;
+  }
+  
+  .loginPage__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .loginPage__logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 150px;
+    object-fit: contain;
+  }
+  
+  .loginPage__signInButton {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    background-color: #e50914;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .loginPage__gradient {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, 0.61),
+      #000
+    );
+  }
+  
+  .loginPage__body {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 70px 45px;
+    text-align: center;
+  }
+  
+  .loginPage__body h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .loginPage__body h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .loginPage__body h3 {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+  
+  .loginPage__input {
+    margin: 20px 0;
+  }
+  
+  .loginPage__input form {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .loginPage__input input {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    width: 30%;
+    max-width: 600px;
+  }
+  
+  .loginPage__getStarted {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
