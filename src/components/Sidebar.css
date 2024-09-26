@@ -1,0 +1,23 @@
+/* Sidebar.css */
+
+/* Sidebar Styles */
+.MuiDrawer-paper {
+    background-color: #141414; /* Dark background for sidebar */
+    color: #f8f9fa; /* Light text color */
+  }
+  
+  .MuiListItem {
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+  }
+  
+  .MuiListItemIcon {
+    min-width: 40px; /* Set a minimum width for icons */
+  }
+  
+  /* Divider styles */
+  .MuiDivider {
+    margin: 8px 0; /* Add some margin to dividers */
+  }
+  
+  /* Add any additional custom styles here if needed */
+  

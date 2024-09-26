@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Typography, Card, CardMedia, CardContent, CircularProgress, Grid, Box, Button } from '@mui/material';
+import './ActorDetails.css';
 
 const ActorDetails = () => {
   const { actorId } = useParams();
@@ -39,14 +40,14 @@ const ActorDetails = () => {
   }
 
   return (
-    <Box sx={{ padding: '20px' }}>
+    <Box sx={{ padding: '20px', backgroundColor: '#141414', color: '#FFFFFF' }}> {/* Background color matching Netflix */}
       {/* Actor details */}
       <Box sx={{ display: 'flex', marginBottom: '40px' }}>
         <CardMedia
           component="img"
           alt={actor.name}
           image={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} // Actor's image
-          sx={{ width: '300px', marginRight: '20px' }}
+          sx={{ width: '300px', marginRight: '20px', borderRadius: '8px' }}
         />
         <Box>
           <Typography variant="h3">{actor.name}</Typography>
@@ -56,7 +57,7 @@ const ActorDetails = () => {
           </Typography>
           <Button 
             variant="contained" 
-            sx={{ marginTop: '20px' }} 
+            sx={{ marginTop: '20px', backgroundColor: '#E50914', color: '#FFFFFF', '&:hover': { backgroundColor: '#f40612' } }} // Netflix red for button
             href={`https://www.imdb.com/name/${actor.imdb_id}`} 
             target="_blank">
             IMDB
@@ -70,7 +71,7 @@ const ActorDetails = () => {
         {movies.map((movie) => (
           <Grid item key={movie.id} xs={6} sm={4} md={3} lg={2}>
             <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
-              <Card>
+              <Card sx={{ backgroundColor: '#212121', color: '#FFFFFF' }}> {/* Movie card color */}
                 <CardMedia
                   component="img"
                   alt={movie.title}
@@ -88,7 +89,7 @@ const ActorDetails = () => {
 
       {/* Back button */}
       <Box sx={{ marginTop: '20px' }}>
-        <Button variant="contained" color="primary" onClick={() => window.history.back()}>
+        <Button variant="contained" sx={{ backgroundColor: '#E50914', color: '#FFFFFF', '&:hover': { backgroundColor: '#f40612' } }} onClick={() => window.history.back()}>
           Back
         </Button>
       </Box>

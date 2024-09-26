@@ -2,70 +2,109 @@
 
 /* Container for the movie details page */
 .movie-details {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background-color: #1B263B; /* Deep Navy background */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    color: #F8F9FA; /* Almost White text color */
-  }
-  
-  /* Movie poster */
-  .movie-details__poster {
-    width: 100%;
-    border-radius: 8px;
-  }
-  
-  /* Title of the movie */
-  .movie-details__title {
-    font-size: 2rem;
-    margin: 15px 0;
-    color: #FF6B6B; /* Coral Pink for title */
-  }
-  
-  /* Overview text */
-  .movie-details__overview {
-    font-size: 1rem;
-    margin-bottom: 15px;
-  }
-  
-  /* Genre tags */
-  .movie-details__genres {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .movie-details__genre {
-    background-color: #FF9F1C; /* Tangerine for genre tags */
-    color: #1B263B; /* Deep Navy text color */
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  /* Rating and release date */
-  .movie-details__info {
-    margin: 15px 0;
-    font-size: 1rem;
-  }
-  
-  /* Back button */
-  .movie-details__back-button {
-    display: inline-block;
-    padding: 10px 15px;
-    margin-top: 20px;
-    background-color: #FF6B6B; /* Coral Pink */
-    color: #F8F9FA; /* Almost White */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .movie-details__back-button:hover {
-    background-color: #FF9F1C; /* Change color on hover */
-  }
-  
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: #1B263B; /* Deep Navy background */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Slightly darker shadow */
+  color: #F8F9FA; /* Almost White text color */
+}
+
+/* Movie poster */
+.movie-details__poster {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Smooth zoom effect */
+}
+
+/* Title of the movie */
+.movie-details__title {
+  font-size: 2rem;
+  margin: 15px 0;
+  color: #FF6B6B; /* Coral Pink for title */
+  text-align: center; /* Center the title */
+}
+
+/* Overview text */
+.movie-details__overview {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  line-height: 1.5; /* Improve readability */
+}
+
+/* Genre tags */
+.movie-details__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center; /* Center genre tags */
+}
+
+/* Individual genre style */
+.movie-details__genre {
+  background-color: #FF9F1C; /* Tangerine for genre tags */
+  color: #1B263B; /* Deep Navy text color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Rating and release date */
+.movie-details__info {
+  margin: 15px 0;
+  font-size: 1rem;
+  text-align: center; /* Center align info */
+}
+
+/* Buttons styling */
+.movie-details__buttons {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: center; /* Center align buttons */
+  margin-top: 20px;
+}
+
+/* General button styling */
+.movie-details__button {
+  padding: 10px 15px;
+  margin: 10px 0; /* Space between buttons */
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Add transition for scaling */
+}
+
+/* Button for "Visit Website" */
+.movie-details__visit-website {
+  background-color: #FF6B6B; /* Coral Pink */
+  color: #F8F9FA; /* Almost White */
+}
+
+.movie-details__visit-website:hover {
+  background-color: #FF9F1C; /* Change color on hover */
+  transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Button for "Watch Trailer" */
+.movie-details__watch-trailer {
+  background-color: #FF9F1C; /* Tangerine */
+  color: #ddd127; /* Deep Navy */
+}
+
+.movie-details__watch-trailer:hover {
+  background-color: #FF6B6B; /* Change color on hover */
+  transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Button for "Back" */
+.movie-details__back-button {
+  background-color: transparent; /* Transparent background */
+  color: #FF6B6B; /* Coral Pink */
+  border: 1px solid #FF6B6B; /* Border for back button */
+}
+
+.movie-details__back-button:hover {
+  background-color: rgba(255, 107, 107, 0.2); /* Light Coral Pink on hover */
+  transform: scale(1.05); /* Slightly scale up on hover */
+}

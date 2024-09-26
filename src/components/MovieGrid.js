@@ -3,7 +3,7 @@ import { Grid, CircularProgress, Typography, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import MovieCard from './MovieCard';
 import { fetchPopularMovies, fetchMoviesByGenre } from '../services/tmdbApi';
-import './MovieGrid.css';
+import './MovieGrid.css'; // Ensure you update this CSS for dark mode
 
 const MovieGrid = ({ selectedGenre, searchResults }) => {
   const [movies, setMovies] = useState([]);
@@ -19,15 +19,18 @@ const MovieGrid = ({ selectedGenre, searchResults }) => {
       try {
         let movieData;
 
-        // Use searchResults if available
         if (searchResults && searchResults.length > 0) {
-          movieData = searchResults; // Use the search results directly
+          // If there are search results, use them directly
+          movieData = searchResults;
         } else if (selectedGenre) {
+          // Fetch movies by selected genre
           movieData = await fetchMoviesByGenre(selectedGenre, currentPage);
         } else {
+          // Fetch popular movies
           movieData = await fetchPopularMovies(currentPage);
         }
 
+        // Set the fetched movies
         setMovies(movieData);
       } catch (err) {
         setError(err.message);
@@ -37,7 +40,7 @@ const MovieGrid = ({ selectedGenre, searchResults }) => {
     };
 
     loadMovies();
-  }, [selectedGenre, currentPage, searchResults]); // Include searchResults in dependencies
+  }, [selectedGenre, currentPage, searchResults]);
 
   if (loading) {
     return (
@@ -55,25 +58,25 @@ const MovieGrid = ({ selectedGenre, searchResults }) => {
     );
   }
 
-  // Function to handle long press
   const handleLongPress = (movieId) => {
     setTimeout(() => {
-      navigate(`/movie/${movieId}`); // Navigate to movie details after long press
-    }, 700); // 700 ms for long press duration
+      navigate(`/movie/${movieId}`);
+    }, 700); // 700 ms for long press
   };
 
-  // Function to clear the long press action
   const handlePressRelease = () => {
-    // This can be left empty if no action is needed on release
+    // Handle long press release
   };
 
-  // Get the latest movie (first movie in the list)
   const latestMovie = movies[0] || {};
 
   return (
     <div className="movie-grid">
       {/* Featured Latest Movie Section */}
-      <Box className="latest-movie">
+      <Box
+        className="latest-movie"
+        sx={{ backgroundColor: '#141414', color: '#fff', padding: 2 }} // Dark background
+      >
         {latestMovie.backdrop_path ? (
           <img
             src={`https://image.tmdb.org/t/p/original/${latestMovie.backdrop_path}`}
@@ -82,17 +85,17 @@ const MovieGrid = ({ selectedGenre, searchResults }) => {
           />
         ) : null}
         <div className="latest-movie-info">
-          <Typography variant="h2" className="latest-movie-title">
+          <Typography variant="h2" className="latest-movie-title" sx={{ color: '#fff' }}>
             {latestMovie.title}
           </Typography>
-          <Typography variant="body1" className="latest-movie-description">
+          <Typography variant="body1" className="latest-movie-description" sx={{ color: '#d3d3d3' }}>
             {latestMovie.overview}
           </Typography>
         </div>
       </Box>
 
       {/* Movie Card Grid */}
-      <Grid container spacing={2} className="movie-card-grid">
+      <Grid container spacing={2} className="movie-card-grid" sx={{ backgroundColor: '#141414', padding: 2 }}>
         {movies.slice(1).map((movie) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
             <div
@@ -109,11 +112,12 @@ const MovieGrid = ({ selectedGenre, searchResults }) => {
       </Grid>
 
       {/* Next Button */}
-      <Box mt={4} display="flex" justifyContent="center">
+      <Box mt={4} display="flex" justifyContent="center" sx={{ backgroundColor: '#141414' }}>
         <Button 
           variant="contained" 
           color="primary" 
-          onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
+          onClick={() => setCurrentPage((prevPage) => prevPage + 1)} // Increment page number
+          sx={{ backgroundColor: '#E50914', color: '#fff' }} // Netflix red button
         >
           Next
         </Button>

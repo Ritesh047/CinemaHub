@@ -7,24 +7,28 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import MovieIcon from '@mui/icons-material/Movie';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
-import StarIcon from '@mui/icons-material/Star'; // Corrected the icon name for Action
+import StarIcon from '@mui/icons-material/Star';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import ScienceIcon from '@mui/icons-material/Science';
-import SportsIcon from '@mui/icons-material/SportsSoccer'; // Corrected icon for sports
+import SportsIcon from '@mui/icons-material/SportsSoccer';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import NatureIcon from '@mui/icons-material/Terrain'; // Replaced Nature icon for Adventure
+import NatureIcon from '@mui/icons-material/Terrain';
 import SecurityIcon from '@mui/icons-material/Security';
 import PersonIcon from '@mui/icons-material/Person';
 
-const categories = [
+// Import the CSS file
+import './Sidebar.css';
+
+// Movie categories
+const movieCategories = [
   { name: 'Home', icon: <MovieIcon /> },
   { name: 'Favorites', icon: <FavoriteIcon /> },
   { name: 'Upcoming', icon: <SentimentVerySatisfiedIcon /> },
 ];
 
-// Updated genres with IDs
-const genres = [
+// Updated movie genres with IDs
+const movieGenres = [
   { name: 'Action', id: 28, icon: <StarIcon /> },
   { name: 'Comedy', id: 35, icon: <TheaterComedyIcon /> },
   { name: 'Drama', id: 18, icon: <TheaterComedyIcon /> },
@@ -42,29 +46,54 @@ const genres = [
 
 const Sidebar = ({ open, onClose, onSelectCategory, onSelectGenre }) => {
   return (
-    <Drawer anchor="left" open={open} onClose={onClose}>
+    <Drawer
+      anchor="left"
+      open={open}
+      onClose={onClose}
+      sx={{
+        '& .MuiDrawer-paper': {
+          backgroundColor: '#141414', // Dark background
+          color: '#f8f9fa', // Light text color
+          width: 240, // Fixed width for the sidebar
+        },
+      }}
+    >
       <List>
-        <Divider />
+        <Divider sx={{ backgroundColor: '#f8f9fa' }} />
         {/* Categories Section */}
-        {categories.map((category) => (
-          <ListItem 
-            button 
-            key={category.name} 
+        {movieCategories.map((category) => (
+          <ListItem
+            button
+            key={category.name}
             onClick={() => onSelectCategory(category.name)}
+            sx={{
+              '&:hover': {
+                backgroundColor: '#e50914', // Netflix red on hover
+              },
+              color: '#f8f9fa',
+              padding: '10px 20px', // Increased padding
+            }}
           >
-            <ListItemIcon>{category.icon}</ListItemIcon>
+            <ListItemIcon sx={{ color: '#f8f9fa' }}>{category.icon}</ListItemIcon>
             <ListItemText primary={category.name} />
           </ListItem>
         ))}
-        <Divider />
+        <Divider sx={{ backgroundColor: '#f8f9fa' }} />
         {/* Genres Section */}
-        {genres.map((genre) => (
-          <ListItem 
-            button 
-            key={genre.name} 
+        {movieGenres.map((genre) => (
+          <ListItem
+            button
+            key={genre.id} // Use genre ID as key for better performance
             onClick={() => onSelectGenre(genre.id)} // Pass genre ID
+            sx={{
+              '&:hover': {
+                backgroundColor: '#e50914', // Netflix red on hover
+              },
+              color: '#f8f9fa',
+              padding: '10px 20px', // Increased padding
+            }}
           >
-            <ListItemIcon>{genre.icon}</ListItemIcon>
+            <ListItemIcon sx={{ color: '#f8f9fa' }}>{genre.icon}</ListItemIcon>
             <ListItemText primary={genre.name} />
           </ListItem>
         ))}

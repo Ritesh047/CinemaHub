@@ -1,17 +1,17 @@
 .movie-card {
   max-width: 280px;  /* Slightly wider for better content display */
   margin: 15px auto;  /* Increased margin for spacing */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);  /* Softer shadow */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);  /* Softer shadow */
   border-radius: 16px;  /* More rounded corners for a modern look */
   overflow: hidden;  /* Ensure no content overflow */
   transition: transform 0.4s ease, box-shadow 0.4s ease;  /* Smoother transition */
-  background-color: #fff;  /* White background for clean design */
+  background-color: #141414;  /* Dark background for Netflix theme */
   cursor: pointer;
 }
 
 .movie-card:hover {
   transform: translateY(-8px);  /* More pronounced hover effect */
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);  /* Stronger shadow on hover */
 }
 
 .movie-poster {
@@ -23,7 +23,7 @@
 }
 
 .movie-card:hover .movie-poster {
-  transform: scale(1.05);  /* Zoom in on hover for visual appeal */
+  transform: scale(1.07);  /* Zoom in on hover for visual appeal */
 }
 
 .card-content {
@@ -35,12 +35,12 @@
   font-size: 1.1rem;  /* Slightly larger font for readability */
   font-weight: 600;
   margin: 10px 0 8px;
-  color: #333;
+  color: #ffffff;  /* White text for readability against dark background */
   transition: color 0.3s ease;
 }
 
 .movie-card:hover .movie-title {
-  color: #ff6b6b;  /* Accent color for title on hover */
+  color: #baa5a5;  /* Netflix red for title on hover */
 }
 
 .rating-stars {

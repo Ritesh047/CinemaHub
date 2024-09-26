@@ -1,19 +1,83 @@
 /* ActorDetails.css */
 
+/* Container for the actor details page */
 .actor-details {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background-color: #1B263B; /* Deep Navy background */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    color: #F8F9FA; /* Almost White text color */
-  }
-  
-  .actor-details__poster {
-    width: 100%;
-    border-radius: 8px;
-  }
-  
-  /* Other styling as needed */
-  
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: #141414; /* Dark background similar to Netflix */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow for depth */
+  color: #FFFFFF; /* White text color for contrast */
+}
+
+.actor-details__poster {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Title styling */
+.actor-details__title {
+  font-size: 2rem;
+  margin: 15px 0;
+  color: #E50914; /* Netflix red for title */
+}
+
+/* Overview text */
+.actor-details__overview {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+/* Movie card styles */
+.actor-details__movie-card {
+  background-color: #212121; /* Dark gray for movie cards */
+  color: #FFFFFF; /* White text color for movie titles */
+  border-radius: 8px;
+}
+
+/* Button styles */
+.actor-details__button {
+  background-color: #E50914; /* Netflix red for buttons */
+  color: #FFFFFF; /* White text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actor-details__button:hover {
+  background-color: #f40612; /* Darker red on hover */
+}
+
+/* Genre tags */
+.actor-details__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.actor-details__genre {
+  background-color: #E50914; /* Netflix red for genre tags */
+  color: #FFFFFF; /* White text color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Back button */
+.actor-details__back-button {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-top: 20px;
+  background-color: #E50914; /* Netflix red */
+  color: #FFFFFF; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actor-details__back-button:hover {
+  background-color: #f40612; /* Change color on hover */
+}

@@ -5,13 +5,12 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
-import Button from '@mui/material/Button';
-import { TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { TextField, Menu, MenuItem } from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
-  const [openLogin, setOpenLogin] = React.useState(false);
-  const [loginData, setLoginData] = React.useState({ email: '', password: '' });
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -30,92 +29,83 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
     }
   };
 
-  const handleLoginOpen = () => {
-    setOpenLogin(true);
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleLoginClose = () => {
-    setOpenLogin(false);
-  };
-
-  const handleLoginChange = (event) => {
-    const { name, value } = event.target;
-    setLoginData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleLoginSubmit = () => {
-    console.log("Login Data:", loginData);
-    setOpenLogin(false);
+  const handleProfileMenuClose = () => {
+    setAnchorEl(null);
   };
 
   return (
-    <>
-      <AppBar position="fixed" sx={{ backgroundColor: '#1B263B' }}>
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={onMenuClick}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            CinemaHub
-          </Typography>
+    <AppBar position="fixed" sx={{ backgroundColor: '#141414' }}> {/* Dark background for Netflix look */}
+      <Toolbar>
+        <IconButton edge="start" color="inherit" aria-label="menu" onClick={onMenuClick}>
+          <MenuIcon />
+        </IconButton>
+        <Typography 
+          variant="h6" 
+          sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: 1, color: '#E50914' }} // Netflix red color
+        >
+          MovieFlix
+        </Typography>
 
-          <TextField
-            variant="outlined"
-            size="small"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            onKeyPress={handleKeyPress}
-            sx={{ backgroundColor: '#fff', borderRadius: 1, mr: 1 }}
-          />
-          <IconButton color="inherit" onClick={handleSearchSubmit}>
-            <SearchIcon />
-          </IconButton>
+        <TextField
+          variant="outlined"
+          size="small"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onKeyPress={handleKeyPress}
+          sx={{
+            backgroundColor: '#333333', // Dark background for the search input
+            borderRadius: 5, // Rounded corners
+            mr: 1,
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'transparent', // No border by default
+              },
+              '&:hover fieldset': {
+                borderColor: 'transparent', // No border on hover
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#E50914', // Netflix red when focused
+              },
+            },
+            '& .MuiInputBase-input': {
+              color: '#ffffff', // White text for input
+              padding: '10px 12px', // Add padding for better spacing
+            },
+          }}
+        />
+        <IconButton color="inherit" onClick={handleSearchSubmit}>
+          <SearchIcon />
+        </IconButton>
 
-          <Button sx={{ color: '#fff' }} onClick={handleLoginOpen}>
-          Login
-          </Button>
-        </Toolbar>
-      </AppBar>
-
-      {/* Login Dialog */}
-      <Dialog open={openLogin} onClose={handleLoginClose}>
-        <DialogTitle>Login</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please enter your login credentials.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            name="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="outlined"
-            value={loginData.email}
-            onChange={handleLoginChange}
-          />
-          <TextField
-            margin="dense"
-            name="password"
-            label="Password"
-            type="password"
-            fullWidth
-            variant="outlined"
-            value={loginData.password}
-            onChange={handleLoginChange}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleLoginClose}>Cancel</Button>
-          <Button onClick={handleLoginSubmit}>Login</Button>
-        </DialogActions>
-      </Dialog>
-    </>
+        <IconButton
+          edge="end"
+          aria-label="account of current user"
+          aria-controls="profile-menu"
+          aria-haspopup="true"
+          color="inherit"
+          onClick={handleProfileMenuOpen}
+        >
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          id="profile-menu"
+          anchorEl={anchorEl}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          keepMounted
+          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          open={Boolean(anchorEl)}
+          onClose={handleProfileMenuClose}
+        >
+          <MenuItem onClick={handleProfileMenuClose}>Profile</MenuItem>
+          <MenuItem onClick={handleProfileMenuClose}>Logout</MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
 };
 
