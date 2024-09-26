@@ -75,8 +75,8 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
             <SearchIcon />
           </IconButton>
 
-          <Button color="inherit" onClick={handleLoginOpen}>
-            Login
+          <Button sx={{ color: '#fff' }} onClick={handleLoginOpen}>
+          Login
           </Button>
         </Toolbar>
       </AppBar>
