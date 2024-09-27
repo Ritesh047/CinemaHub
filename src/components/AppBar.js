@@ -7,12 +7,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import { TextField, Menu, MenuItem } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { useNavigate } from 'react-router-dom';  // Import the useNavigate hook
+import { useNavigate } from 'react-router-dom';
 
 const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const navigate = useNavigate();  // Hook for navigating programmatically
+  const navigate = useNavigate();
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -41,7 +41,7 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
 
   const handleProfileClick = () => {
     handleProfileMenuClose();
-    navigate('/profile');  // Navigate to the profile page
+    navigate('/profile');
   };
 
   return (
@@ -52,7 +52,15 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
         </IconButton>
         <Typography 
           variant="h6" 
-          sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: 1, color: '#E50914' }}
+          sx={{ 
+            flexGrow: 1, 
+            fontFamily: '"Bebas Neue", sans-serif', // Use the imported font
+            fontWeight: 'bold', 
+            letterSpacing: 3,
+            fontSize: '2rem', // Increase font size for prominence
+            color: '#E50914', 
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' 
+          }}
         >
           MovieFlix
         </Typography>
