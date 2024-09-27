@@ -10,6 +10,7 @@ import ActorDetails from './components/ActorDetails';
 import Favorites from './components/Favorites';
 import Upcoming from './components/Upcoming';
 import LoginPage from './components/LoginPage';  // Import the LoginPage component
+import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
 import { fetchMoviesBySearch } from './services/tmdbApi';
 
 const App = () => {
@@ -138,6 +139,8 @@ const App = () => {
                   <Route path="/movie/:movieId" element={<MovieDetails />} />
                   {/* Actor Details Route */}
                   <Route path="/actors/:actorId" element={<ActorDetails />} />
+                  {/* Profile Page Route */}
+                  <Route path="/profile" element={<ProfilePage />} /> {/* Add this line for ProfilePage */}
                 </Routes>
               </div>
 

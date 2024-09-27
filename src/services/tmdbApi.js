@@ -42,14 +42,12 @@ export const fetchUpcomingMovies = async () => {
 };
 
 // Function to fetch movie details
-export const fetchMovieDetails = async (movieId) => {
-  try {
-    const response = await axios.get(getUrlWithParams(`/movie/${movieId}`));
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching movie details:", error);
-    throw error;
+export const fetchMovieDetails = async (id) => {
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=YOUR_API_KEY`);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
   }
+  return await response.json();
 };
 
 // Function to fetch genres
