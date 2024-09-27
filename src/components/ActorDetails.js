@@ -42,14 +42,16 @@ const ActorDetails = () => {
   return (
     <Box sx={{ padding: '20px', backgroundColor: '#141414', color: '#FFFFFF' }}>
       {/* Actor details */}
-      <Box sx={{ display: 'flex', marginBottom: '40px' }}>
-        <CardMedia
-          component="img"
-          alt={actor.name}
-          image={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} // Actor's image
-          sx={{ width: '300px', marginRight: '20px', borderRadius: '8px' }}
-        />
-        <Box>
+      <Grid container spacing={2} sx={{ marginBottom: '40px' }}>
+        <Grid item xs={12} md={4}>
+          <CardMedia
+            component="img"
+            alt={actor.name}
+            image={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} // Actor's image
+            sx={{ width: '100%', borderRadius: '8px' }}
+          />
+        </Grid>
+        <Grid item xs={12} md={8}>
           <Typography variant="h3">{actor.name}</Typography>
           <Typography variant="subtitle1" color="textSecondary">Born: {new Date(actor.birthday).toDateString()}</Typography>
           <Typography variant="body1" sx={{ marginTop: '20px' }}>
@@ -62,8 +64,8 @@ const ActorDetails = () => {
             target="_blank">
             IMDB
           </Button>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
 
       {/* Actor's movies */}
       <Typography variant="h4" gutterBottom>Movies</Typography>
@@ -71,7 +73,7 @@ const ActorDetails = () => {
         {movies.map((movie) => (
           <Grid item key={movie.id} xs={6} sm={4} md={3} lg={2}>
             <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
-              <Card className="movie-card" sx={{ backgroundColor: '#E50914', color: '#FFFFFF' }}> {/* Changed to red background */}
+              <Card className="movie-card" sx={{ backgroundColor: '#E50914', color: '#FFFFFF' }}>
                 <CardMedia
                   component="img"
                   alt={movie.title}

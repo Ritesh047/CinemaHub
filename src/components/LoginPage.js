@@ -9,11 +9,6 @@ const LoginPage = ({ onLoginSubmit }) => {
   const [showSetupScreen, setShowSetupScreen] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [password, setPassword] = useState(''); // State for password input
-  const [email, setEmail] = useState(''); // State for email input
-  const [emailError, setEmailError] = useState(''); // State for email error message
-
-  // Updated email regex
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleSignInClick = () => {
     setShowSignInForm(true);
@@ -33,22 +28,12 @@ const LoginPage = ({ onLoginSubmit }) => {
     }, 2000);
   };
 
-  const handleLoginClick = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    setEmailError(''); // Reset email error message
-
-    // Test the email against the regex
-    if (emailRegex.test(email)) {
-      console.log("Valid email address"); // Log valid email address
-      if (successMessage) {
-        setSuccessMessage('');
-      }
-      setShowSignInForm(true);
-      setShowSetupScreen(false);
-    } else {
-      console.log("Invalid email address"); // Log invalid email address
-      setEmailError('Please enter a valid email address.');
+  const handleLoginClick = () => {
+    if (successMessage) {
+      setSuccessMessage('');
     }
+    setShowSignInForm(true);
+    setShowSetupScreen(false);
   };
 
   return (
@@ -111,16 +96,9 @@ const LoginPage = ({ onLoginSubmit }) => {
           ) : showSignInForm ? (
             <div className="sign-in-form">
               <h1>Sign In</h1>
-              <form onSubmit={handleLoginClick}>
+              <form onSubmit={onLoginSubmit}>
                 <div className="loginPage__input"> {/* Container for input */}
-                  <input
-                    type="email"
-                    placeholder="Email or mobile number"
-                    required
-                    value={email} // Bind value to state
-                    onChange={(e) => setEmail(e.target.value)} // Update state on change
-                  />
-                  {emailError && <span className="error-message">{emailError}</span>} {/* Display error message */}
+                  <input type="email" placeholder="Email or mobile number" required />
                 </div>
                 <div className="loginPage__input"> {/* Container for input */}
                   <input
@@ -173,3 +151,4 @@ const LoginPage = ({ onLoginSubmit }) => {
 };
 
 export default LoginPage;
+
