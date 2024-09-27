@@ -13,6 +13,14 @@
   }
 }
 
+.main-content {
+  margin-top: 64px; /* Space for AppBar */
+  padding: 20px; /* Optional padding */
+  height: calc(100vh - 64px); /* Full height minus the AppBar */
+  overflow-y: auto; /* Enable vertical scrolling */
+  background-color: #181616; /* Optional background color */
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

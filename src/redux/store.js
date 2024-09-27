@@ -1,5 +1,5 @@
 // src/redux/store.js
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import {  applyMiddleware, combineReducers } from 'redux';
 import { thunk } from 'redux-thunk'; // Correct named import
 import movieReducer from './reducers/movieReducer';
 

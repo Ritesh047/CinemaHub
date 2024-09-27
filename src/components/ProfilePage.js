@@ -13,7 +13,6 @@ import {
   Grid,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MovieIcon from '@mui/icons-material/Movie';
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +21,6 @@ import './ProfilePage.css'; // Import the CSS file
 const ProfilePage = () => {
   const [userName, setUserName] = useState('Ritesh Kumar Behera');
   const [userAvatar, setUserAvatar] = useState('https://example.com/avatar.jpg'); // Replace with actual image
-  const [favoriteGenres, setFavoriteGenres] = useState(['Action', 'Comedy', 'Drama']);
   const [watchlist, setWatchlist] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [newAvatar, setNewAvatar] = useState(userAvatar);
@@ -46,10 +44,6 @@ const ProfilePage = () => {
     setOpenDialog(false);
   };
 
-  const handleGenreClick = (genre) => {
-    navigate(`/genre/${genre}`);
-  };
-
   const handleSettingsClick = () => {
     setOpenSettingsDialog(true);
     setNewUserName(userName);
@@ -71,11 +65,6 @@ const ProfilePage = () => {
     setOpenSettingsDialog(false);
   };
 
-  const handleAddToWatchlist = (movie) => {
-    if (!watchlist.includes(movie)) {
-      setWatchlist([...watchlist, movie]);
-    }
-  };
 
   const handleRemoveFromWatchlist = (movie) => {
     setWatchlist(watchlist.filter((item) => item !== movie));
@@ -104,35 +93,6 @@ const ProfilePage = () => {
                   <SettingsIcon />
                 </IconButton>
               </Box>
-            </Box>
-          </Box>
-        </Grid>
-
-        {/* Favorite Genres */}
-        <Grid item xs={12} md={6}>
-          <Box sx={{ mb: 6 }}>
-            <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>
-              <FavoriteIcon sx={{ color: '#E50914', mr: 1 }} />
-              Favorite Genres
-            </Typography>
-            <Box display="flex" flexWrap="wrap" gap={1}>
-              {favoriteGenres.map((genre, index) => (
-                <Typography
-                  key={index}
-                  variant="body1"
-                  sx={{
-                    backgroundColor: '#E50914',
-                    padding: '8px 16px',
-                    borderRadius: '20px',
-                    color: '#FFFFFF',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => handleGenreClick(genre)}
-                >
-                  {genre}
-                </Typography>
-              ))}
             </Box>
           </Box>
         </Grid>

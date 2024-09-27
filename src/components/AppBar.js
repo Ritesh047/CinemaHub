@@ -9,7 +9,7 @@ import { TextField, Menu, MenuItem } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 
-const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
+const AppBarComponent = ({ onMenuClick, onSearchClick, onLogout }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
@@ -40,6 +40,7 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
   };
 
   const handleProfileClick = () => {
+    // Redirect to profile page when clicked
     handleProfileMenuClose();
     navigate('/profile');
   };
@@ -54,10 +55,10 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
           variant="h6" 
           sx={{ 
             flexGrow: 1, 
-            fontFamily: '"Bebas Neue", sans-serif', // Use the imported font
+            fontFamily: '"Bebas Neue", sans-serif', 
             fontWeight: 'bold', 
             letterSpacing: 3,
-            fontSize: '2rem', // Increase font size for prominence
+            fontSize: '2rem', 
             color: '#E50914', 
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' 
           }}
@@ -117,7 +118,7 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
           onClose={handleProfileMenuClose}
         >
           <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
-          <MenuItem onClick={handleProfileMenuClose}>Logout</MenuItem>
+          
         </Menu>
       </Toolbar>
     </AppBar>

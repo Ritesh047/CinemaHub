@@ -40,7 +40,7 @@ const ActorDetails = () => {
   }
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: '#141414', color: '#FFFFFF' }}> {/* Background color matching Netflix */}
+    <Box sx={{ padding: '20px', backgroundColor: '#141414', color: '#FFFFFF' }}>
       {/* Actor details */}
       <Box sx={{ display: 'flex', marginBottom: '40px' }}>
         <CardMedia
@@ -57,7 +57,7 @@ const ActorDetails = () => {
           </Typography>
           <Button 
             variant="contained" 
-            sx={{ marginTop: '20px', backgroundColor: '#E50914', color: '#FFFFFF', '&:hover': { backgroundColor: '#f40612' } }} // Netflix red for button
+            sx={{ marginTop: '20px', backgroundColor: '#E50914', color: '#FFFFFF', '&:hover': { backgroundColor: '#f40612' } }}
             href={`https://www.imdb.com/name/${actor.imdb_id}`} 
             target="_blank">
             IMDB
@@ -71,7 +71,7 @@ const ActorDetails = () => {
         {movies.map((movie) => (
           <Grid item key={movie.id} xs={6} sm={4} md={3} lg={2}>
             <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
-              <Card sx={{ backgroundColor: '#212121', color: '#FFFFFF' }}> {/* Movie card color */}
+              <Card className="movie-card" sx={{ backgroundColor: '#E50914', color: '#FFFFFF' }}> {/* Changed to red background */}
                 <CardMedia
                   component="img"
                   alt={movie.title}

@@ -132,3 +132,37 @@
     max-height: 220px;
   }
 }
+
+.latest-movie {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer; /* Ensure pointer for hover interaction */
+}
+
+.latest-movie img {
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.latest-movie:hover img,
+.latest-movie:active img {
+  transform: scale(1.05); /* Light zoom effect */
+}
+
+.latest-movie-rating {
+  font-weight: bold;
+  color: #ffdd57; /* Gold color for rating */
+}
+
+.movie-grid {
+  transition: transform 0.3s ease; /* Smooth transition for showing/hiding */
+}
+
+.hide {
+  transform: translateY(-100%); /* Move out of view when scrolling down */
+}
+
+.show {
+  transform: translateY(0); /* Reset to original position when scrolling up */
+}

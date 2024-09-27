@@ -1,3 +1,10 @@
+/* Prevent scrolling on the body and html elements */
+html, body {
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling */
+  margin: 0; /* Remove default margin */
+}
+
 .loginPage {
   position: relative;
   height: 100vh;
@@ -23,6 +30,7 @@
   left: 20px;
   width: 150px;
   object-fit: contain;
+  z-index: 2; /* Ensure logo is above the background */
 }
 
 .loginPage__signInButton {
@@ -35,6 +43,14 @@
   color: white;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* Added transition */
+  border-radius: 5px; /* Rounded corners for button */
+  z-index: 2; /* Ensure button is above the background */
+}
+
+.loginPage__signInButton:hover {
+  background-color: #ff3d24; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .loginPage__gradient {
@@ -52,7 +68,7 @@
 
 .loginPage__body {
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Ensure body is above the background */
   color: white;
   padding: 20px;
   text-align: center;
@@ -61,16 +77,25 @@
 /* Black box with rounded corners and centered form */
 .loginPage__blackBox {
   background-color: rgba(0, 0, 0, 0.8); /* Slight transparency */
-  border: 2px solid rgb(255, 68, 0); /* Blue outline */
+  border: 2px solid rgb(255, 68, 0); /* Red outline */
   border-radius: 10px; /* Rounded corners */
   padding: 30px;
   width: 100%;
   max-width: 400px;
   box-shadow: 0px 8px 50px rgba(239, 0, 0, 0.908); /* Stronger shadow for dark mode */
+  margin: 0 auto; /* Center the black box horizontally */
 }
 
 .loginPage__input {
   margin: 20px 0;
+  display: flex; /* Use flex for better layout control */
+  justify-content: center; /* Center the input container */
+}
+.loginPage__header {
+  display: flex;
+  justify-content: space-between; /* Positions elements at opposite ends */
+  align-items: center; /* Centers items vertically */
+  padding: 16px; /* Adjust as needed for spacing */
 }
 
 .loginPage__input input {
@@ -80,9 +105,14 @@
   margin-bottom: 10px;
   border: 1px solid #333;
   border-radius: 5px;
-  background-color: #222; /* Dark input background */
+  background-color: #312c2c; /* Dark input background */
   color: white;
   outline: none;
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.loginPage__input input:focus {
+  border-color: #e50914; /* Highlight border on focus */
 }
 
 .loginPage__getStarted {
@@ -95,6 +125,11 @@
   width: 100%; /* Full width button */
   margin-top: 10px;
   border-radius: 5px;
+  transition: background-color 0.3s; /* Added transition */
+}
+
+.loginPage__getStarted:hover {
+  background-color: #ff3d24; /* Darker shade on hover */
 }
 
 .loginPage__options {

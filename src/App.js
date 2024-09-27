@@ -9,24 +9,23 @@ import MovieDetails from './components/MovieDetails';
 import ActorDetails from './components/ActorDetails';
 import Favorites from './components/Favorites';
 import Upcoming from './components/Upcoming';
-import LoginPage from './components/LoginPage';  // Import the LoginPage component
-import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
+import LoginPage from './components/LoginPage';
+import ProfilePage from './components/ProfilePage'; 
 import { fetchMoviesBySearch } from './services/tmdbApi';
+import './App.css'; // Import your CSS file for styles
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedGenreId, setSelectedGenreId] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('Home');
+  const [selectedCategory, setSelectedCategory] = useState('Home'); // Default to Home
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);  // Track authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Handle menu toggle
   const handleMenuClick = () => {
     setSidebarOpen((prevState) => !prevState);
   };
 
-  // Handle genre selection
   const handleGenreSelect = (genreId) => {
     setSelectedGenreId(genreId);
     setSearchResults([]);
@@ -34,15 +33,19 @@ const App = () => {
     setSidebarOpen(false);
   };
 
-  // Handle category selection
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setSelectedGenreId(null);
     setSearchResults([]);
+
+    // If the selected category is Home, ensure the view resets
+    if (category === 'Home') {
+      setSelectedGenreId(null); // Reset genre if going to Home
+    }
+
     setSidebarOpen(false);
   };
 
-  // Handle search input from AppBar
   const handleSearchClick = async (searchTerm) => {
     if (searchTerm.trim() === '') return;
     setIsLoading(true);
@@ -59,13 +62,11 @@ const App = () => {
     }
   };
 
-  // Handle login submission (dummy authentication)
   const handleLoginSubmit = (loginData) => {
     console.log('Login successful:', loginData);
-    setIsAuthenticated(true);  // Set authenticated state to true after login
+    setIsAuthenticated(true);
   };
 
-  // Create a light theme instance
   const theme = createTheme({
     palette: {
       mode: 'light',
@@ -100,25 +101,19 @@ const App = () => {
       <CssBaseline />
       <Router>
         <div>
-          {/* Conditionally render the LoginPage or the main app based on authentication */}
           {!isAuthenticated ? (
-            <LoginPage onLoginSubmit={handleLoginSubmit} />  
+            <LoginPage onLoginSubmit={handleLoginSubmit} />
           ) : (
             <>
-              {/* App Bar Component */}
               <AppBarComponent onMenuClick={handleMenuClick} onSearchClick={handleSearchClick} />
-
-              {/* Sidebar Component */}
               <Sidebar
                 open={sidebarOpen}
                 onClose={() => setSidebarOpen(false)}
                 onSelectGenre={handleGenreSelect}
                 onSelectCategory={handleCategorySelect}
               />
-
-              <div style={{ marginTop: '64px' }}>
+              <div className="main-content"> {/* Add this class for scrollable content */}
                 <Routes>
-                  {/* Default Home Route */}
                   <Route
                     path="/"
                     element={
@@ -135,17 +130,13 @@ const App = () => {
                       </>
                     }
                   />
-                  {/* Movie Details Route */}
                   <Route path="/movie/:movieId" element={<MovieDetails />} />
-                  {/* Actor Details Route */}
                   <Route path="/actors/:actorId" element={<ActorDetails />} />
-                  {/* Profile Page Route */}
-                  <Route path="/profile" element={<ProfilePage />} /> {/* Add this line for ProfilePage */}
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
+                {isLoading && <div>Loading...</div>}
               </div>
-
-              {/* Loader when fetching search results */}
-              {isLoading && <div>Loading...</div>}
             </>
           )}
         </div>

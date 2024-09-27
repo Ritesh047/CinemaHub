@@ -9,9 +9,9 @@ const getUrlWithParams = (path, params = {}) => {
 };
 
 // Function to fetch movies by genre
-export const fetchMoviesByGenre = async (genreId) => {
+export const fetchMoviesByGenre = async (genreId, page = 1) => {
   try {
-    const response = await axios.get(getUrlWithParams('/discover/movie', { with_genres: genreId }));
+    const response = await axios.get(getUrlWithParams('/discover/movie', { with_genres: genreId, page }));
     return response.data.results;
   } catch (error) {
     console.error("Error fetching movies by genre:", error);
@@ -20,9 +20,9 @@ export const fetchMoviesByGenre = async (genreId) => {
 };
 
 // Function to fetch popular movies
-export const fetchPopularMovies = async () => {
+export const fetchPopularMovies = async (page = 1) => {
   try {
-    const response = await axios.get(getUrlWithParams('/movie/popular'));
+    const response = await axios.get(getUrlWithParams('/movie/popular', { page }));
     return response.data.results;
   } catch (error) {
     console.error("Error fetching popular movies:", error);
@@ -75,3 +75,4 @@ export const fetchMoviesBySearch = async (searchTerm) => {
     throw error;
   }
 };
+
