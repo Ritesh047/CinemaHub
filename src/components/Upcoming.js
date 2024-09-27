@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUpcomingMovies } from '../services/tmdbApi'; // Adjust the path according to your structure
 import MovieCard from './MovieCard'; // Import your MovieCard component
-import { Grid, Typography, CircularProgress } from '@mui/material';
+import { Grid, Typography, CircularProgress, Box } from '@mui/material';
 
 const Upcoming = () => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
@@ -33,8 +33,8 @@ const Upcoming = () => {
   }
 
   return (
-    <div>
-      <Typography variant="h4" gutterBottom>
+    <Box sx={{ backgroundColor: '#141414', padding: '20px', minHeight: '100vh' }}> {/* Set dark background color */}
+      <Typography variant="h4" gutterBottom sx={{ color: '#FFFFFF' }}> {/* Set text color to white */}
         Upcoming Movies
       </Typography>
       <Grid container spacing={2}>
@@ -44,7 +44,7 @@ const Upcoming = () => {
           </Grid>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 };
 
