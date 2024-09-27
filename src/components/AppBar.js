@@ -7,10 +7,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import { TextField, Menu, MenuItem } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { useNavigate } from 'react-router-dom';  // Import the useNavigate hook
 
 const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();  // Hook for navigating programmatically
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -37,15 +39,20 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
     setAnchorEl(null);
   };
 
+  const handleProfileClick = () => {
+    handleProfileMenuClose();
+    navigate('/profile');  // Navigate to the profile page
+  };
+
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: '#141414' }}> {/* Dark background for Netflix look */}
+    <AppBar position="fixed" sx={{ backgroundColor: '#141414' }}>
       <Toolbar>
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={onMenuClick}>
           <MenuIcon />
         </IconButton>
         <Typography 
           variant="h6" 
-          sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: 1, color: '#E50914' }} // Netflix red color
+          sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: 1, color: '#E50914' }}
         >
           MovieFlix
         </Typography>
@@ -58,23 +65,23 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
           onChange={handleSearchChange}
           onKeyPress={handleKeyPress}
           sx={{
-            backgroundColor: '#333333', // Dark background for the search input
-            borderRadius: 5, // Rounded corners
+            backgroundColor: '#333333',
+            borderRadius: 5,
             mr: 1,
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
-                borderColor: 'transparent', // No border by default
+                borderColor: 'transparent',
               },
               '&:hover fieldset': {
-                borderColor: 'transparent', // No border on hover
+                borderColor: 'transparent',
               },
               '&.Mui-focused fieldset': {
-                borderColor: '#E50914', // Netflix red when focused
+                borderColor: '#E50914',
               },
             },
             '& .MuiInputBase-input': {
-              color: '#ffffff', // White text for input
-              padding: '10px 12px', // Add padding for better spacing
+              color: '#ffffff',
+              padding: '10px 12px',
             },
           }}
         />
@@ -101,7 +108,7 @@ const AppBarComponent = ({ onMenuClick, onSearchClick }) => {
           open={Boolean(anchorEl)}
           onClose={handleProfileMenuClose}
         >
-          <MenuItem onClick={handleProfileMenuClose}>Profile</MenuItem>
+          <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
           <MenuItem onClick={handleProfileMenuClose}>Logout</MenuItem>
         </Menu>
       </Toolbar>
