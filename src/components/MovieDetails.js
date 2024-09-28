@@ -15,8 +15,6 @@ import StarIcon from '@mui/icons-material/Star';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import ScienceIcon from '@mui/icons-material/Science';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import YouTubeIcon from '@mui/icons-material/YouTube'; // Import YouTube icon
 import './MovieDetails.css';
