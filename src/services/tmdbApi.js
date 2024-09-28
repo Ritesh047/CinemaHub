@@ -5,7 +5,7 @@ const API_KEY = 'ce993c3f47e79d3c8afba611b131000a'; // Replace with your TMDB AP
 
 // Helper function to create request URLs with API key
 const getUrlWithParams = (path, params = {}) => {
-  return `${TMDB_API_BASE_URL}${path}?api_key=${API_KEY}&${new URLSearchParams(params)}`;
+  return `${TMDB_API_BASE_URL}${path}?api_key=${API_KEY}&${new URLSearchParams(params).toString()}`;
 };
 
 // Function to fetch movies by genre
@@ -31,9 +31,9 @@ export const fetchPopularMovies = async (page = 1) => {
 };
 
 // Function to fetch upcoming movies
-export const fetchUpcomingMovies = async () => {
+export const fetchUpcomingMovies = async (page = 1) => { // Added page parameter for consistency
   try {
-    const response = await axios.get(getUrlWithParams('/movie/upcoming', { language: 'en-US' }));
+    const response = await axios.get(getUrlWithParams('/movie/upcoming', { language: 'en-US', page }));
     return response.data.results;
   } catch (error) {
     console.error("Error fetching upcoming movies:", error);
@@ -43,11 +43,13 @@ export const fetchUpcomingMovies = async () => {
 
 // Function to fetch movie details
 export const fetchMovieDetails = async (id) => {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=YOUR_API_KEY`);
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
+  try {
+    const response = await axios.get(getUrlWithParams(`/movie/${id}`));
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    throw error;
   }
-  return await response.json();
 };
 
 // Function to fetch genres
@@ -75,4 +77,3 @@ export const fetchMoviesBySearch = async (searchTerm) => {
     throw error;
   }
 };
-

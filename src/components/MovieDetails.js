@@ -236,7 +236,7 @@ const MovieDetails = () => {
     onClick={handleWatchTrailer}
     startIcon={<YouTubeIcon />}
   >
-    Watch Trailer
+    Trailer
   </Button>
   <Button
     variant="contained"
@@ -250,14 +250,14 @@ const MovieDetails = () => {
     sx={{ backgroundColor: isFavorite ? '#E50914' : '#D3D3D3', color: '#ffffff' }} // Toggle between colors
     onClick={handleAddFavorite}
   >
-    {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+    {isFavorite ? 'Remove from Favorites' : '+ Favorites'}
   </Button>
   <Button
     variant="contained"
     sx={{ backgroundColor: inWatchlist ? '#E50914' : '#D3D3D3', color: '#ffffff' }} // Toggle between colors
     onClick={handleAddWatchlist}
   >
-    {inWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+    {inWatchlist ? 'Remove from Watchlist' : 'My list'}
   </Button>
   <Button
     variant="contained"

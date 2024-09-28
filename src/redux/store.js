@@ -1,16 +1,14 @@
-// src/redux/store.js
-import {  applyMiddleware, combineReducers } from 'redux';
-import { thunk } from 'redux-thunk'; // Correct named import
-import movieReducer from './reducers/movieReducer';
+// redux/store.js
 
-// Combine all reducers
+import { createStore, applyMiddleware } from 'redux';
+import { combineReducers } from 'redux';
+import { thunk } from 'redux-thunk'; // Correctly import thunk as a named export
+import movieReducer from './reducers/movieReducer'; // Ensure this path and name are correct
+
 const rootReducer = combineReducers({
   movies: movieReducer,
-  // Add other reducers here if needed
 });
 
-// Create Redux store with thunk middleware
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-// Export the configured store
 export default store;

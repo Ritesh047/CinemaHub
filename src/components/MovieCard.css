@@ -1,74 +1,100 @@
 .movie-card {
-  max-width: 280px;  /* Slightly wider for better content display */
-  margin: 15px auto;  /* Increased margin for spacing */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);  /* Softer shadow */
-  border-radius: 16px;  /* More rounded corners for a modern look */
-  overflow: hidden;  /* Ensure no content overflow */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;  /* Smoother transition */
-  background-color: #141414;  /* Dark background for Netflix theme */
-  cursor: pointer;
+  margin: 15px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 15px; /* Rounded corners for a modern look */
+  background-color: #1f1f1f; /* Dark background for card */
+  color: #f8f9fa; /* Light text color */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
 
 .movie-card:hover {
-  transform: translateY(-8px);  /* More pronounced hover effect */
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);  /* Stronger shadow on hover */
+  transform: scale(1.05); /* Zoom effect */
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
 }
 
 .movie-poster {
-  height: 320px;  /* Slightly taller for a more cinematic feel */
-  border-radius: 15px 15px 0 0;  /* Only top corners rounded for poster */
-  object-fit: cover;  /* Ensures the image covers the area without distortion */
   width: 100%;
-  transition: transform 0.3s ease;  /* Subtle zoom effect on hover */
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease; /* Smooth zoom effect for image */
 }
 
 .movie-card:hover .movie-poster {
-  transform: scale(1.07);  /* Zoom in on hover for visual appeal */
-}
-
-.card-content {
-  padding: 15px;  /* Increased padding for better spacing */
-  text-align: center;
+  transform: scale(1.08); /* Slight zoom on hover */
 }
 
 .movie-title {
-  font-size: 1.1rem;  /* Slightly larger font for readability */
-  font-weight: 600;
-  margin: 10px 0 8px;
-  color: #ffffff;  /* White text for readability against dark background */
-  transition: color 0.3s ease;
+  color: #ffffff; /* White text for title */
+  font-size: 1.1rem;
+  margin: 10px 0;
+  text-align: center;
+  font-weight: bold; /* Bold for emphasis */
 }
 
 .movie-card:hover .movie-title {
-  color: #baa5a5;  /* Netflix red for title on hover */
+  color: #ff6b6b; /* Coral pink on hover */
 }
 
 .rating-stars {
   display: flex;
   justify-content: center;
-  margin-top: 8px;  /* Slightly larger space between stars and title */
+  margin-top: 10px; /* Space above stars */
 }
 
 .star-filled {
-  color: #ffb400;  /* Golden color for filled stars */
+  color: #ffcc00; /* Bright yellow for filled stars */
 }
 
 .star-empty {
-  color: #ccc;  /* Lighter grey for empty stars */
+  color: #cccccc; /* Light grey for empty stars */
 }
 
-/* Mobile adjustments */
+/* Responsive adjustments */
 @media (max-width: 600px) {
   .movie-card {
-    max-width: 90%;  /* Make cards wider on mobile screens */
-    margin: 10px auto;  /* Adjust margin */
-  }
-
-  .movie-poster {
-    height: 250px;  /* Shorter posters on mobile */
+    margin: 10px;
+    padding: 10px;
   }
 
   .movie-title {
-    font-size: 1rem;  /* Slightly smaller text for mobile */
+    font-size: 1rem; /* Slightly smaller title font on mobile */
+  }
+
+  .rating-stars {
+    margin-top: 8px; /* Less space on mobile */
+  }
+
+  .star-filled, .star-empty {
+    font-size: 18px; /* Smaller stars on mobile */
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+  .movie-card {
+    margin: 15px;
+    padding: 15px;
+  }
+
+  .movie-title {
+    font-size: 1.2rem; /* Slightly larger font on tablet */
+  }
+
+  .star-filled, .star-empty {
+    font-size: 20px; /* Larger stars for tablets */
+  }
+}
+
+@media (min-width: 1201px) {
+  .movie-card {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .movie-title {
+    font-size: 1.3rem; /* Larger title font for desktops */
+  }
+
+  .star-filled, .star-empty {
+    font-size: 24px; /* Larger stars for desktop */
   }
 }

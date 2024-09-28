@@ -13,13 +13,16 @@ export const FETCH_MOVIE_DETAILS_FAILURE = 'FETCH_MOVIE_DETAILS_FAILURE';
 export const FETCH_GENRES_REQUEST = 'FETCH_GENRES_REQUEST';
 export const FETCH_GENRES_SUCCESS = 'FETCH_GENRES_SUCCESS';
 export const FETCH_GENRES_FAILURE = 'FETCH_GENRES_FAILURE';
-  
-// Action to fetch movies
-export const fetchMovies = (genreId = null) => {
+
+// Action to fetch movies with pagination
+export const fetchMovies = (page, genreId = null) => {
   return async (dispatch) => {
     dispatch({ type: FETCH_MOVIES_REQUEST });
     try {
-      const movies = genreId ? await fetchMoviesByGenre(genreId) : await fetchPopularMovies();
+      const movies = genreId
+        ? await fetchMoviesByGenre(genreId, page)  // Pass the page to fetchMoviesByGenre
+        : await fetchPopularMovies(page);  // Pass the page to fetchPopularMovies
+      
       dispatch({ type: FETCH_MOVIES_SUCCESS, payload: movies });
     } catch (error) {
       dispatch({ type: FETCH_MOVIES_FAILURE, payload: error.message });

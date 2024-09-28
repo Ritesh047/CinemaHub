@@ -10,10 +10,17 @@ const MovieCard = ({ movie }) => {
   return (
     <Card
       sx={{
-        backgroundColor: '#a42424', // Red background
-        color: '#f8f9fa', // Light text for better contrast
+        backgroundColor: '#1f1f1f', // Dark background for the card
+        color: '#f8f9fa', // Light text for contrast
+        borderRadius: '15px', // Rounded corners for a modern look
+        overflow: 'hidden', // Prevent content overflow
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)', // Subtle shadow
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth hover transitions
+        '&:hover': {
+          transform: 'scale(1.05)', // Slight zoom effect on hover
+          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.4)', // Stronger shadow on hover
+        },
       }}
-      className="movie-card"
     >
       <CardActionArea>
         <CardMedia
@@ -21,20 +28,34 @@ const MovieCard = ({ movie }) => {
           alt={movie.title}
           className="movie-poster"
           image={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/path/to/placeholder.jpg'}
+          sx={{
+            height: '400px', // Tall image for a cinematic feel
+            objectFit: 'cover', // Cover the entire image area
+            borderRadius: '10px', // Rounded corners for the image
+            transition: 'transform 0.3s ease', // Subtle zoom on hover
+            '&:hover': {
+              transform: 'scale(1.08)', // More pronounced zoom on hover
+            },
+          }}
         />
         <CardContent
           sx={{
-            textAlign: 'center', // Centering text for a better look
             padding: '16px',
+            textAlign: 'center', // Center-align text for a clean look
           }}
-          className="card-content"
         >
-          <Typography variant="h6" className="movie-title" noWrap>
+          <Typography variant="h6" className="movie-title" noWrap sx={{ marginBottom: '8px', fontWeight: 'bold' }}>
             {movie.title}
           </Typography>
-          <Box className="rating-stars">
+          <Box display="flex" justifyContent="center" alignItems="center" mb={1}>
             {Array.from({ length: 5 }, (_, i) => (
-              <StarIcon key={i} className={i < rating ? 'star-filled' : 'star-empty'} sx={{ color: i < rating ? '#ff9f1c' : '#f8f9fa' }} /> // Use accent color for stars
+              <StarIcon
+                key={i}
+                sx={{
+                  color: i < rating ? '#ffcc00' : '#cccccc', // Yellow for filled stars, grey for empty stars
+                  fontSize: '20px',
+                }}
+              />
             ))}
           </Box>
         </CardContent>
