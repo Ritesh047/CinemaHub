@@ -76,7 +76,7 @@ const LoginPage = ({ onLoginSubmit }) => {
           ) : showSetupScreen ? (
             <div className="setup-screen">
               <h1>Finish setting up your account</h1>
-              <p>Create a password or request a sign-up link to use CinemaHub without a password on any device at any time.</p>
+              <p>Create a password or request a sign-up link to use MovieFlix with a password on any device at any time.</p>
               <form onSubmit={handlePasswordCreate}>
                 <div className="loginPage__input"> {/* Container for input */}
                   <input
